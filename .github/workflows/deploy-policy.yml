@@ -49,4 +49,3 @@ jobs:
                           curl -k --silent --no-buffer -H "Authorization: Bearer ${admin_token}" -X POST https://${stackrox_ep}/v1/policies -d "$(cat policies/$github_policy)"
                   fi
           done
-   #test
