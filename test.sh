@@ -14,7 +14,7 @@ for github_policy in $GITHUB_POLICIES;do
                 echo policy is in the array
 		formatted_policy_name=$(echo $github_policy_name | sed "s/'//g")
 		echo $formatted_policy_name
-                github_policy_id=$(curl -k --silent --no-buffer -H "Authorization: Bearer ${admin_token}" https://${stackrox_ep}/v1/policies | jq -r -c --unbuffered '.policies[] | select(.name=="$formatted_policy_name") | .id')
+                github_policy_id=$(curl -k --silent --no-buffer -H "Authorization: Bearer ${admin_token}" https://${stackrox_ep}/v1/policies | jq -r -c --unbuffered '.policies[] | select(.name=="'"$formatted_policy_name"'") | .id')
                 echo $github_policy_id
         else
                 echo policy is not in array
