@@ -38,11 +38,13 @@ jobs:
           for github_policy in $GITHUB_POLICIES;do
                   github_policy_name=$(cat policies/$github_policy | jq '.name' | sed "s/\"/\'/g")
                   if [[ " ${POLICIES[@]} " =~ " $github_policy_name " ]]; then
+                          echo ""
                           formatted_policy_name=$(echo $github_policy_name | sed "s/'//g")
                           github_policy_id=$(curl -k --silent --no-buffer -H "Authorization: Bearer ${admin_token}" https://${stackrox_ep}/v1/policies | jq -r -c --unbuffered '.policies[] | select(.name=="'"$formatted_policy_name"'") | .id')
                           echo "Verifying existing policy ${github_policy_name}"
                           curl -k --silent --no-buffer -H "Authorization: Bearer ${admin_token}" -X PUT https://${stackrox_ep}/v1/policies/${github_policy_id} -d "$(cat policies/$github_policy)"
                   else
+                          echo ""
                           echo "Applying new policy ${github_policy_name}"
                           curl -k --silent --no-buffer -H "Authorization: Bearer ${admin_token}" -X POST https://${stackrox_ep}/v1/policies -d "$(cat policies/$github_policy)"
                   fi
