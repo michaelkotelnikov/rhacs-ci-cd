@@ -43,4 +43,5 @@ jobs:
                   else
                           echo policy is not in array
                   fi
-          done 
+          done
+   #test
