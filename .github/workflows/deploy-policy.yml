@@ -36,7 +36,8 @@ jobs:
                   echo $github_policy_name
                   if [[ " ${POLICIES[@]} " =~ " $github_policy_name " ]]; then
                           echo policy is in the array
-                          github_policy_id=$(curl -k --silent --no-buffer -H "Authorization: Bearer ${admin_token}" https://${stackrox_ep}/v1/policies | jq -r -c --unbuffered '.policies[] | select(.name=="$github_policy_name") | .id')
+                          formatted_policy_name=$(echo $github_policy_name | sed "s/'//g")
+                          github_policy_id=$(curl -k --silent --no-buffer -H "Authorization: Bearer ${admin_token}" https://${stackrox_ep}/v1/policies | jq -r -c --unbuffered '.policies[] | select(.name=="'"$formatted_policy_name"'") | .id')
                           echo $github_policy_id
                   else
                           echo policy is not in array
