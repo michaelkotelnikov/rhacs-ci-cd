@@ -32,10 +32,12 @@ jobs:
           GITHUB_POLICIES=$(ls -l policies/ | grep -v total | awk {'print $9'})
           
           for github_policy in $GITHUB_POLICIES;do
-                  github_policy_content=$(cat policies/$github_policy | jq '.name' | sed "s/\"/\'/g")
-                  echo $github_policy_content
-                  if [[ " ${POLICIES[@]} " =~ " $github_policy_content " ]]; then
+                  github_policy_name=$(cat policies/$github_policy | jq '.name' | sed "s/\"/\'/g")
+                  echo $github_policy_name
+                  if [[ " ${POLICIES[@]} " =~ " $github_policy_name " ]]; then
                           echo policy is in the array
+                          github_policy_id=$(curl -k --silent --no-buffer -H "Authorization: Bearer ${admin_token}" https://${stackrox_ep}/v1/policies | jq -r -c --unbuffered '.policies[] | select(.name=="$github_policy_name") | .id')
+                          echo $github_policy_id
                   else
                           echo policy is not in array
                   fi
