@@ -1,5 +1,5 @@
 {
-    "name": "Require Owner Annotation",
+    "name": "Require Owner Label",
     "description": "The policy disallows creation of deployments without the `owner: ` label.",
     "rationale": "Deployments without the `owner` label are known to be dangerous. Therefore, using such deployments is disallowed.",
     "remediation": "Add the `owner: <your-name>` annotation to the deployment.",
