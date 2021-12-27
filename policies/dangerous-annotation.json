@@ -1,8 +1,8 @@
 {
-    "name": "Disallow Dangerous Annotation",
-    "description": "The policy disallows creation of deployments with the `dangerous: true` annotation.",
-    "rationale": "Deployments with the `dangerous: true` annotation are known to be dangerous. Therefore, using such deployments is disallowed.",
-    "remediation": "Remove the `dangerous: true` annotation from the deployment.",
+    "name": "Require Owner Annotation",
+    "description": "The policy disallows creation of deployments without the `owner: ` label.",
+    "rationale": "Deployments without the `owner` label are known to be dangerous. Therefore, using such deployments is disallowed.",
+    "remediation": "Add the `owner: <your-name>` annotation to the deployment.",
     "disabled": false,
     "categories": [
         "Security Best Practices"
@@ -36,12 +36,22 @@
             "sectionName": "Policy Section 1",
             "policyGroups": [
                 {
-                    "fieldName": "Disallowed Annotation",
+                    "fieldName": "Required Label",
                     "booleanOperator": "OR",
                     "negate": false,
                     "values": [
                         {
-                            "value": "dangerous=true"
+                            "value": "owner=.*"
+                        }
+                    ]
+                },
+                {
+                    "fieldName": "Namespace",
+                    "booleanOperator": "OR",
+                    "negate": false,
+                    "values": [
+                        {
+                            "value": "application-1"
                         }
                     ]
                 }
