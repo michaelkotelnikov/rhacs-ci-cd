@@ -1,0 +1,55 @@
+{
+    "name": "disallow-dangerous-annotation",
+    "description": "The policy disallows creation of deployments with the `dangerous: true` annotation.",
+    "rationale": "Deployments with the `dangerous: true` annotation are known to be dangerous. Therefore, using such deployments is disallowed.",
+    "remediation": "Remove the `dangerous: true` annotation from the deployment.",
+    "disabled": false,
+    "categories": [
+        "Security Best Practices"
+    ],
+    "fields": null,
+    "lifecycleStages": [
+        "DEPLOY"
+    ],
+    "eventSource": "NOT_APPLICABLE",
+    "whitelists": [],
+    "exclusions": [],
+    "scope": [
+        {
+            "cluster": "a8e47222-93e0-4dc2-bfa9-3718f04528a8",
+            "namespace": "",
+            "label": null
+        }
+    ],
+    "severity": "LOW_SEVERITY",
+    "enforcementActions": [
+        "SCALE_TO_ZERO_ENFORCEMENT",
+        "UNSATISFIABLE_NODE_CONSTRAINT_ENFORCEMENT"
+    ],
+    "notifiers": [],
+    "SORTName": "",
+    "SORTLifecycleStage": "",
+    "SORTEnforcement": false,
+    "policyVersion": "1.1",
+    "policySections": [
+        {
+            "sectionName": "Policy Section 1",
+            "policyGroups": [
+                {
+                    "fieldName": "Disallowed Annotation",
+                    "booleanOperator": "OR",
+                    "negate": false,
+                    "values": [
+                        {
+                            "value": "dangerous=true"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "mitreAttackVectors": [],
+    "criteriaLocked": false,
+    "mitreVectorsLocked": false,
+    "isDefault": false
+}
