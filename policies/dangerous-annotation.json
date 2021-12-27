@@ -1,5 +1,5 @@
 {
-    "name": "disallow-dangerous-annotation",
+    "name": "Disallow Dangerous Annotation",
     "description": "The policy disallows creation of deployments with the `dangerous: true` annotation.",
     "rationale": "Deployments with the `dangerous: true` annotation are known to be dangerous. Therefore, using such deployments is disallowed.",
     "remediation": "Remove the `dangerous: true` annotation from the deployment.",
