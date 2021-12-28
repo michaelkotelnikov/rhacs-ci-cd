@@ -9,7 +9,8 @@
     ],
     "fields": null,
     "lifecycleStages": [
-        "DEPLOY"
+        "DEPLOY",
+	"BUILD"
     ],
     "eventSource": "NOT_APPLICABLE",
     "whitelists": [],
